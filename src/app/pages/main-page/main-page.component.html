@@ -1,2 +1,12 @@
-<p>main-page works!</p>
-<product-card-basic [product]="myProduct"></product-card-basic>
+<div class="container">
+    <div class="row mb-3">
+        <input class="form-control ds-input" placeholder="Search..." (input)="searchFieldChange()" [(ngModel)]="nameFilter">
+    </div>
+    
+    <div class="row">
+        <div class="d-inline-flex gap-3 flex-wrap" >
+            <product-card-basic class="flex-fill" *ngFor="let product of filteredProducts" [product]="product"></product-card-basic>
+            <p *ngIf="filteredProducts.length === 0" class="display-4">Nothing to show.</p>
+        </div>
+    </div> 
+</div>
