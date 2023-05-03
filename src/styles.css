@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --pink-color: #f8c8dc;
+}
+
 .card-img-top {
     height: 180px;
 }
@@ -19,4 +23,13 @@ img::before {
     background-color: #ccc;
     left: 0;
     position: absolute;
+}
+
+.navbar-pink {
+    background-color: var(--pink-color) !important;
+}
+
+.card-selectable:hover {
+    filter: brightness(0.9);
+    transition: filter 200ms;
 }
