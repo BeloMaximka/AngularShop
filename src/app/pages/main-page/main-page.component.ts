@@ -15,6 +15,7 @@ export class MainPageComponent {
   public nameFilter: string = "";
   public filteredProducts: Product[] = [];
   public products: Product[] = [];
+  
   private async getProducts() {
     this.products = await this.database.getProducts();
     this.filteredProducts = this.products;

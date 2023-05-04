@@ -14,4 +14,8 @@ export class DataAccessService {
   public async getProducts() {
     return await lastValueFrom(this.http.get<Product[]>(this.baseUrl + "/get-products"));
   }
+
+  public async getProduct(id: string | null) {
+    return await lastValueFrom(this.http.get<Product>(this.baseUrl + `/get-product?id=${id}`));
+  }
 }
