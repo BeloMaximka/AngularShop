@@ -17,7 +17,7 @@ export class MainPageComponent {
   public products: Product[] = [];
   
   private async getProducts() {
-    this.products = await this.database.getProducts();
+    this.products = await this.database.getProducts(true);
     this.filteredProducts = this.products;
   }
 
