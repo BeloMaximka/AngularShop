@@ -37,10 +37,8 @@ export class ProductPageComponent {
 
   async addComment() {
     try {
-      const id = await this.database.addComment(this.id, this.newCommentText)
-      if (id !== undefined) {
-        this.comments.unshift({ _id: id, text: this.newCommentText });
-      }
+      const comment = await this.database.addComment(this.id, this.newCommentText)
+      this.comments.unshift(comment);
     } catch (error) {
     }
   }

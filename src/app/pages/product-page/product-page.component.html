@@ -18,14 +18,17 @@
   <div class="row mb-3">
     <h2>Comments:</h2>
     <div class="card-footer py-3 border-0">
-      <div class="d-flex flex-start w-100">
-        <div class="form-outline w-100">
-          <textarea class="form-control" rows="4" placeholder="Write you comment..." [(ngModel)]="newCommentText"></textarea>
+      <form #commentForm="ngForm" (ngSubmit)="addComment(); commentForm.resetForm();">
+        <div class="d-flex flex-start w-100">
+          <div class="form-outline w-100">
+            <textarea required #commentText="ngModel" name="commentText" class="form-control" rows="4" placeholder="Write you comment..." [(ngModel)]="newCommentText"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="float-start mt-2 pt-1">
-        <button type="button" class="btn btn-primary" (click)="addComment()">Post comment</button>
-      </div>
+        <div class="float-start mt-2 pt-1">
+          <button [disabled]="!commentText.valid" type="submit" class="btn btn-primary">Post comment</button>
+        </div>
+      </form>
+      
     </div>
   </div>
 

@@ -25,10 +25,9 @@ export class DataAccessService {
   }
 
   public async addComment(id: string, text: string) {
-    const result = await lastValueFrom(this.http.post<any>(this.baseUrl + `/add-comment`, {
+    return await lastValueFrom(this.http.post<Comment>(this.baseUrl + `/add-comment`, {
       productId: id,
       text: text
     }));
-    return result.id as string | undefined;
   }
 }
