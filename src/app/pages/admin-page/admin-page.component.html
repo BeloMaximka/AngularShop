@@ -1,1 +1,62 @@
-<p>admin-page works!</p>
+<div class="container">
+    <div class="row mb-3">
+        <h3>Add product:</h3>
+        <div class="col-12 col-md-6 order-2 order-md-1">
+            <form #productForm="ngForm">
+                <div class="form-group mb-2">
+                    <label for="nameInput">Name</label>
+                    <input class="form-control" id="nameInput" placeholder="Enter name" pattern="[A-z\s]+" required
+                        name="productName" [(ngModel)]="product.name" #nameInput="ngModel"
+                        [class.is-valid]="nameInput.valid" [class.is-invalid]="!nameInput.valid">
+                    <small class="form-text" [class.text-danger]="!nameInput.valid"
+                        [class.text-muted]="nameInput.valid">Required. Only letters and spaces.</small>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="urlImageInput">Image URL</label>
+                    <input class="form-control" id="urlImageInput" placeholder="Enter image URL" required
+                        name="imageURL" [(ngModel)]="product.image" #urlImageInput="ngModel"
+                        [class.is-valid]="isImageLoaded" [class.is-invalid]="!isImageLoaded">
+                    <small class="form-text text-danger" *ngIf="!isImageLoaded">Link is invalid.</small>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="priceInput">Price</label>
+                    <input class="form-control" id="priceInput" placeholder="Enter price" required pattern="\d+"
+                        [(ngModel)]="product.price" name="price" #priceInput="ngModel"
+                        [class.is-valid]="priceInput.valid" [class.is-invalid]="!priceInput.valid">
+                    <small class="form-text" [class.text-danger]="!priceInput.valid"
+                        [class.text-muted]="priceInput.valid">Required. Only digits.</small>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionTextArea">Description</label>
+                    <textarea class="form-control" id="descriptionTextArea" placeholder="Enter description" rows="3"
+                        required pattern="[A-z\s\d]+" name="description" [(ngModel)]="product.description"
+                        #descriptionTextArea="ngModel" [class.is-valid]="descriptionTextArea.valid"
+                        [class.is-invalid]="!descriptionTextArea.valid"></textarea>
+                    <small class="form-text text-muted">Required. Only letters, spaces and digits.</small>
+                </div>
+                <button [disabled]="!productForm.valid" type="submit" class="btn btn-primary mt-3 px-5">Add</button>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-6 d-flex flex-column order-1 order-md-2">
+            <div class="position-relative flex-fill">
+                <img class="img-fluid equal-size object-fit-contain" [attr.src]="product.image" (error)="onImgError()"
+                    (load)="onImgLoad()">
+            </div>
+            <small class="form-text text-muted text-center">Image preview.</small>
+        </div>
+    </div>
+
+    <h3 class="mt-3 mb-3">Added products:</h3>
+    <div class="row mb-3">
+        <div class="d-inline-flex gap-3 flex-wrap">
+            <div class="card" *ngFor="let product of products">
+                <img class="card-img-top object-fit-contain" [attr.src]="product.image"
+                    [attr.alt]="product.name + ' product'">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
