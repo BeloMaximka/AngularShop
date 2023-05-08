@@ -6,7 +6,7 @@
   <div class="row mb-3">
     <div class="col-12 col-md-6">
       <h1>{{product?.name}}</h1>
-      <img class="img-fluid object-fit-contain" [attr.src]="product?.image"
+      <img class="img-fluid object-fit-contain equal-size-stretch" [attr.src]="product?.image"
         [attr.alt]="product?.name ?? 'unknown' + ' product'">
     </div>
     <div class="col-12 col-md-6 d-flex flex-column">
@@ -18,7 +18,7 @@
   <div class="row mb-3">
     <h2>Comments:</h2>
     <div class="card-footer py-3 border-0">
-      
+
       <form #commentForm="ngForm" (ngSubmit)="addComment(); commentForm.resetForm();">
         <div class="d-flex flex-start w-100">
           <div class="form-outline w-100">

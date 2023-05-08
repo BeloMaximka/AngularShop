@@ -20,6 +20,15 @@ export class DataAccessService {
     return await lastValueFrom(this.http.get<Product>(this.baseUrl + `/get-product?id=${id}`));
   }
 
+  public async addProduct(product: Product) {
+    return await lastValueFrom(this.http.post<Product>(this.baseUrl + `/add-product`, {
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      description: product.description
+    }));
+  }
+
   public async getComments(id: string | null) {
     return await lastValueFrom(this.http.get<Comment[]>(this.baseUrl + `/get-comments?id=${id}`));
   }

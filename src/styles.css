@@ -26,15 +26,19 @@ img::before {
     position: absolute;
 }
 
-img.equal-size::before {
+img.equal-size-stretch::before {
     aspect-ratio: 1 / 1;
+    height: auto;
+}
+
+.equal-size-stretch {
+    aspect-ratio: 1 / 1;
+    width: 100%;
     height: auto;
 }
 
 .equal-size {
     aspect-ratio: 1 / 1;
-    width: 100%;
-    height: auto;
 }
 
 .object-fit-contain {

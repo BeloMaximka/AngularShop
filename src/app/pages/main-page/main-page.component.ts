@@ -8,6 +8,8 @@ import { Product } from 'src/app/database/models/product';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent {
+  public loadedOnce = false;
+
   constructor(private database: DataAccessService) {
     this.getProducts();
   }
@@ -19,6 +21,7 @@ export class MainPageComponent {
   private async getProducts() {
     this.products = await this.database.getProducts(true);
     this.filteredProducts = this.products;
+    this.loadedOnce = true;
   }
 
   public searchFieldChange() {
