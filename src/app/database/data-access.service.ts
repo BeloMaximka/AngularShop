@@ -29,6 +29,12 @@ export class DataAccessService {
     }));
   }
 
+  public async removeProduct(id: string) {
+    return await lastValueFrom(this.http.post<Product>(this.baseUrl + `/remove-product`, {
+      id: id
+    }));
+  }
+
   public async getComments(id: string | null) {
     return await lastValueFrom(this.http.get<Comment[]>(this.baseUrl + `/get-comments?id=${id}`));
   }

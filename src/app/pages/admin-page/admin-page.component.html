@@ -55,14 +55,15 @@
     <h3 class="mt-3 mb-3">Added products:</h3>
     <div class="row mb-3">
         <div class="d-inline-flex gap-3 flex-wrap">
-            <div class="card" *ngFor="let product of products">
-                <img class="card-img-top object-fit-contain equal-size" [attr.src]="product.image"
-                    [attr.alt]="product.name + ' product'">
+            <div class="card" *ngFor="let cardProduct of products">
+                <img class="card-img-top object-fit-contain equal-size" [attr.src]="cardProduct.image"
+                    [attr.alt]="cardProduct.name + ' product'">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{product.name}}</h5>
-                    <button class="btn btn-primary mt-3">Delete</button>
+                    <h5 class="card-title">{{cardProduct.name}}</h5>
+                    <button type="button" class="btn btn-primary mt-3" (click)="deleteProduct(cardProduct)">Delete</button>
                 </div>
             </div>
         </div>
+        <p *ngIf="products.length === 0 && loadedOnce" class="display-4">Nothing to show.</p>
     </div>
 </div>
