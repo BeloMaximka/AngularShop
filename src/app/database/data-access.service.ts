@@ -62,9 +62,19 @@ export class DataAccessService {
     }));
   }
 
-  public async removeShoppingCartItem(id: string, count: number = 1) {
+  public async removeShoppingCartItem(id: string) {
     return await lastValueFrom(this.http.post<string>(this.baseUrl + `/remove-from-shopping-cart`, {
-      productId: id,
+      id,
     }));
+  }
+
+  public async updateShoppingCartItem(id: string, count: number = 1) {
+    return await lastValueFrom(this.http.post<boolean>(this.baseUrl + `/update-shopping-cart-item-count`, {
+      id,
+      count
+    }));
+  }
+  public async clearShoppingCart() {
+    return await lastValueFrom(this.http.post<boolean>(this.baseUrl + `/clear-shopping-cart`, {}));
   }
 }

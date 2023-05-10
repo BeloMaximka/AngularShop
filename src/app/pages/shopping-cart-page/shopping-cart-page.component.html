@@ -1,5 +1,8 @@
 <div class="container">
     <div class="row mb-3">
+        <h1>Shopping cart</h1>
+    </div>
+    <div class="row mb-3">
         <div class="d-inline-flex gap-3 flex-wrap">
             <a class="text-decoration-none text-dark" *ngFor="let countableProduct of shoppingCart.getCart()">
 
@@ -9,21 +12,27 @@
                         [attr.alt]="countableProduct.product.name + ' product'">
                     <div class="card-body">
                         <h5 class="card-title">{{countableProduct.product.name}}</h5>
-                        <h5 class="card-text">{{countableProduct.product.price}}$</h5>
+                        <h5 class="card-text">{{countableProduct.product.price * countableProduct.count}}$</h5>
                        
                     </div>
                     <div class="card-footer">
                         <div class="mb-2 d-flex align-items-center">
-                            <button [disabled]="countableProduct.count <= 1" type="button" class="btn btn-primary d-inline">-</button>
+                            <button (click)="decProductCount(countableProduct)" 
+                                    [disabled]="countableProduct.count <= 1" type="button" class="btn btn-primary d-inline">-</button>
                             <h5 class="card-text d-inline flex-fill text-center">{{countableProduct.count}}</h5>
-                            <button type="button" class="btn btn-primary d-inline">+</button>
+                            <button (click)="incProductCount(countableProduct)" type="button" class="btn btn-primary d-inline">+</button>
                         </div>
                         <button (click)="removeFromShoppingCart(countableProduct.product._id)" type="button" style="width: 100%;" class="btn btn-primary">Remove</button>
                     </div>
                 </div>
             </a>
 
-            <p *ngIf="shoppingCart.getCart().length === 0 && loadedOnce" class="display-4">Nothing to show.</p>
+            <p *ngIf="shoppingCart.getCart().length === 0" class="display-4">Nothing to show.</p>
         </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="shoppingCart.getCart().length !== 0">
+        <h1>Total price: {{shoppingCart.getTotalPrice()}}$</h1>
+        <button (click)="clearShoppingCart()" type="button" class="btn btn-primary col-lg-4 col-12 mt-3 mb-3">Make order</button>
     </div>
 </div>
