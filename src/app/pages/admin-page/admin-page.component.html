@@ -35,7 +35,7 @@
                     <small class="form-text text-muted">Required. Only letters, spaces and digits.</small>
                 </div>
                 
-                <button [disabled]="!productForm.valid" type="submit" class="btn btn-primary mt-3 px-5">Add</button>
+                <button [disabled]="!productForm.valid || !isImageLoaded" type="submit" class="btn btn-primary mt-3 px-5">Add</button>
                 <div class="row">
                     <small class="form-text mb-3" [class.text-success]="isResultSuccess" [class.text-danger]="!isResultSuccess">{{resultMessage}}</small>
                 </div>
@@ -48,7 +48,7 @@
                 <img class="img-fluid equal-size-stretch object-fit-contain" [attr.src]="product.image" (error)="onImgError()"
                     (load)="onImgLoad()">
             </div>
-            <small class="form-text text-muted text-center">Image preview.</small>
+            <span class="text-muted text-center mt-2">Image preview.</span >
         </div>
     </div>
 

@@ -4,9 +4,16 @@
     </div>
     
     <div class="row mb-3">
+        <h1>Products:</h1>
         <div class="d-inline-flex gap-3 flex-wrap" >
             <a class="text-decoration-none text-dark" *ngFor="let product of filteredProducts" [routerLink]="['../product', product._id]">
-                <product-card-basic class="flex-fill card-selectable" [product]="product"></product-card-basic>
+                <div class="card flex-fill card-selectable">
+                    <img class="card-img-top object-fit-contain" style="aspect-ratio: 1 / 1;" [attr.src]="product?.image" [attr.alt]="product?.name ?? 'unknown' + ' product'">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product?.name}}</h5>
+                      <h5 class="card-text">{{product?.price}}$</h5>
+                    </div>
+                  </div>
             </a>
             
             <p *ngIf="filteredProducts.length === 0 && loadedOnce" class="display-4">Nothing to show.</p>
