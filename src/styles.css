@@ -1,8 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
-    --pink-color: #f8c8dc;
-}
-
 .card-img-top {
     height: 180px;
 }
@@ -43,9 +39,6 @@ img.equal-size-stretch::before {
 
 .object-fit-contain {
     object-fit: contain;
-}
-.navbar-pink {
-    background-color: var(--pink-color) !important;
 }
 
 .card-selectable:hover {

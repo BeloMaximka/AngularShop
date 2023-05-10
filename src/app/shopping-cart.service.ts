@@ -30,7 +30,8 @@ export class ShoppingCartService {
   }
 
   public async addToShoppingCart(id: string) {
-    const result = await this.database.addShoppingCartItem(id, 1)
+    const result = await this.database.addShoppingCartItem(id, 1);
+    this.totalPrice += result.count * result.product.price;
     this.cart.unshift(result);
   }
   public async removeFromShoppingCart(id: string) {
