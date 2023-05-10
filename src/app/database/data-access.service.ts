@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Product } from './models/product';
 import { lastValueFrom } from 'rxjs';
 import { Comment } from './models/comment';
+import { CountableProduct } from './models/countableProduct';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,27 @@ export class DataAccessService {
     return await lastValueFrom(this.http.post<Comment>(this.baseUrl + `/add-comment`, {
       productId: id,
       text: text
+    }));
+  }
+
+  public async getShoppingCart() {
+    return await lastValueFrom(this.http.get<CountableProduct[]>(this.baseUrl + `/get-shopping-cart`));
+  }
+
+  public async isShoppingCartItemExists(id: string) {
+    return await lastValueFrom(this.http.get<boolean>(this.baseUrl + `/shopping-cart-item-exists?id=${id}`));
+  }
+  
+  public async addShoppingCartItem(id: string, count: number = 1) {
+    return await lastValueFrom(this.http.post<CountableProduct>(this.baseUrl + `/add-to-shopping-cart`, {
+      productId: id,
+      count: count
+    }));
+  }
+
+  public async removeShoppingCartItem(id: string, count: number = 1) {
+    return await lastValueFrom(this.http.post<string>(this.baseUrl + `/remove-from-shopping-cart`, {
+      productId: id,
     }));
   }
 }
